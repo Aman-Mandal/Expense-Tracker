@@ -25,9 +25,15 @@ const App = () => {
     },
   ]
 
+  // Children-Parent Communication
+  const addExpenseHandler = expense => {
+    console.log('In App.JS')
+    console.log(expense)
+  }
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses item={expenses} />
     </div>
   )
