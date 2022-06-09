@@ -3,7 +3,6 @@ import './ExpenseFilter.css'
 const ExpensesFilter = props => {
   const changeOptionHandler = event => {
     props.onSaveFilterYear(event.target.value)
-    console.log(event.target.value)
   }
   return (
     <div className="expenses-filter">

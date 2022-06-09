@@ -6,8 +6,28 @@ import './Expenses.css'
 
 const Expenses = props => {
   const [filteredYear, setFilteredYear] = useState('2020')
+
   const filterYearHandler = inputYear => {
     setFilteredYear(inputYear)
+  }
+
+  const filteredExpenses = props.item.filter(expense => {
+    return expense.date.getFullYear().toString() === filteredYear
+  })
+
+  // If expenses are empty
+  let expensesContent = <p>No expenses found</p>
+
+  // if expenses are not empty
+  if (filteredYear.length > 0) {
+    filteredExpenses.map(expense => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ))
   }
 
   return (
@@ -17,13 +37,7 @@ const Expenses = props => {
           selected={filteredYear}
           onSaveFilterYear={filterYearHandler}
         />
-        {props.item.map(expense => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {expensesContent}
       </Card>
     </div>
   )
